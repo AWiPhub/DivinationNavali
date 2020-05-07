@@ -130,7 +130,7 @@ export default {
       ]
     }
   },
-  computed: {
+  computed: { //11111111111111111111111111111
     allList: function() {
       return this.cards.filter(function (card){
         return card === {sltcd}

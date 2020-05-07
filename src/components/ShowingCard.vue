@@ -2,27 +2,40 @@
   <div class="ShowingCard">
     <div class="divinationCard">
       <div class="cardFace">
-        <img src="../images/divination-cards/Assassins Favor.png" alt="">
+        <img
+          :src="cards[0].pathImg"
+          :alt="cards[0].name">
       </div>
       <div class="itemBoxContent">
         <div class="itemHeader">
-          <p>{{ sltcd }}</p>
+          <!-- <p v-for="card in cards" :key="card.name">
+            {{card.name}}
+          </p> -->
+
+          <p> {{ cards[0].name }} </p>
         </div>
         <div class="itemStack">
-          <p v-for="card in cards" :key="card.name">
+          <!-- <p v-for="card in cards" :key="card.name">
             {{card.stack}}
-          </p>
+          </p> -->
+
+          <p> {{ cards[0].stack }} </p>
         </div>
         <div class="itemReward">
-          <p v-for="card in cards" :key="card.name">
+          <!-- <p v-for="card in cards" :key="card.name">
             {{card.reward}}
-          </p>
+          </p> -->
+
+          <p> {{ cards[0].reward }} </p>
         </div> 
         <div class="itemDescription">
-          <p v-for="card in cards" :key="card.name">
+          <!-- <p v-for="card in cards" :key="card.name">
             {{card.description}}
-          </p>
+          </p> -->
+
+          <p> {{ cards[0].description }} </p>
         </div>
+        {{card}}
       </div>
     </div>    
   </div>
@@ -115,36 +128,57 @@
 
 
 <script>
+const card = (name, pathImg, reward, stack, description) => ({name, pathImg, reward, stack, description})
+
+const cards = [
+  card("Assassin's Favour",
+        "../images/divination-cards/Assassins Favor.png",
+        "Dagger",
+        "9",
+        "By the time their eyes meet,\
+          the dark deal has long since been made,\
+          and his fate long since sealed."),
+  card("The Inoculated",
+        "../images/divination-cards/The Inoculated.png",
+        "Seraphim's Armour",
+        "4",
+        "Chaos spread, wreaking havoc and death.\
+          They said none would be spared, and yet here I stand.")
+]
+
+
 import SelectedCard from '../views/Divination-Cards.vue'
 
 export default {
   props: ['sltcd'],
-  data() { 
-    return { 
-      cards: [{
-        name: "Assassin's Favour",
-        reward: "Dagger",
-        stack: '9',
-        description: "By the time their eyes meet,\
-                            the dark deal has long since been made,\
-                            and his fate long since sealed."
-      },
-      {
-        name: "Assassin's Favour",
-        reward: "Seraphim's Armour",
-        stack: '4',
-        description: "Chaos spread, wreaking havoc and death.\
-                          They said none would be spared, and yet here I stand."
-      }
-      ]
+  data() {
+    return{
+      cards: cards
     }
-  },
-  computed: { 
-    allList: function() {
-      return this.cards.filter(function (card){
-        return card === {sltcd}
-      })
-    }
-  },
+  }
+
+
+  // data() { 
+  //   return { 
+  //     cards: [
+  //     {
+  //       name: "Assassin's Favour",
+  //       pathImg: '../images/divination-cards/Assassins Favor.png',
+  //       reward: "Dagger",
+  //       stack: '9',
+  //       description: "By the time their eyes meet,\
+  //                           the dark deal has long since been made,\
+  //                           and his fate long since sealed."
+  //     },
+  //     {
+  //       name: "The Inoculated",
+  //       pathImg: '../images/divination-cards/The Inoculated.png',
+  //       reward: "Seraphim's Armour",
+  //       stack: '4',
+  //       description: "Chaos spread, wreaking havoc and death.\
+  //                         They said none would be spared, and yet here I stand."
+  //     }]
+  //   }
+  // }
 }
 </script>

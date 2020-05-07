@@ -8,10 +8,12 @@
         <p>Select Divination Card</p>
       
         <select v-model="SelectedCard">
-          <option>Assassin's Favour</option>
-          <option>The Inoculated</option>
-          <option>The Lunaris Priestess</option>
-          <option>The Watcher</option>
+          <option
+          v-for="card in cards"
+          v-on:change="selectCard"
+          >
+            {{ card.name }}
+          </option>
         </select>
       </div>
     </div>
@@ -49,6 +51,27 @@ export default {
   },
   components:{ // ПОДКЛЮЧЕНИЕ КОМПОНЕНТА 2
     ShowingCard
+  },
+  data() {
+    return{
+      cards: cards
+    }
+  },
+  methods: {
+    selectCard: function() {
+      console.log('click')
+    }
   }
 }
+
+
+
+const card = (name) => ({name})
+
+const cards = [
+  card("Assassin's Favour"),
+  card("The Inoculated")
+]
+
+
 </script>

@@ -7,17 +7,31 @@
       <div class="content">
         <p>Select Divination Card</p>
       
-        <select v-model="SelectedCard">
-          <option
-          v-for="card in cards"
-          v-on:change="selectCard"
+        <div class="inputArea">
+          <input
+            v-model="name"
+            placeholder="Enter your Divination Card..."
+            v-on:click="visible =! visible"
           >
-            {{ card.name }}
-          </option>
-        </select>
+          <div v-show="visible">
+            <ul>
+              <li
+                type="none"
+                v-for="card in filteredList"
+                v-on:change="selectCard"
+                v-on:click="visible =! visible"
+              >
+                {{ card.name }}
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+
+
       </div>
     </div>
-    <showing-card :sltcd="SelectedCard"></showing-card>
+    <showing-card :sltcd="search"></showing-card>
   </div>
 </template>
 
@@ -31,6 +45,7 @@
   position: relative;
   width: 500px;
 }
+
 h2{
   color: #DFCF99;
   font-size: 16.9px;
@@ -39,6 +54,22 @@ h2{
 .content p{
   color: #A38D6D;
   font-size: 15px;
+}
+
+.inputArea{
+  width: 200px;
+}
+
+input{
+  width: 200px;
+}
+
+button{
+  width: 200px;
+}
+
+li:hover{
+  cursor: pointer;
 }
 </style>
 
@@ -54,12 +85,26 @@ export default {
   },
   data() {
     return{
-      cards: cards
+      cards: cards,
+      visible: false,
+      name: '',
+      users: [
+        { name: "Assassin's Favour" },
+        { name: "The Inoculated" },
+      ]
     }
   },
   methods: {
     selectCard: function() {
-      console.log('click')
+    }
+  },
+  computed:{
+    filteredList: function(){
+      var comp = this.name;
+      return this.users.filter(function (elem) {
+        if(comp==='') return true;
+        else return elem.name.indexOf(comp) > -1;
+      })
     }
   }
 }

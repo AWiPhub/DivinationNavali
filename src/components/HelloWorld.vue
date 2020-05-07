@@ -6,7 +6,7 @@
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
-    <proverka>
+    
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String //проверка коммита
+    msg: String 
   }
 }
 </script>

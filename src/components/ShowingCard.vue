@@ -111,7 +111,7 @@ import SelectedCard from '../views/Divination-Cards.vue'
 export default {
   props: ['sltcd'],
   data() { 
-    return { //проверка коммита
+    return { 
       cards: [{
         name: "Assassin's Favour",
         reward: "Dagger",

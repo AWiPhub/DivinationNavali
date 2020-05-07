@@ -17,7 +17,7 @@
           <p v-for="card in cards" :key="card.name">
             {{card.reward}}
           </p>
-        </div>
+        </div> 
         <div class="itemDescription">
           <p v-for="card in cards" :key="card.name">
             {{card.description}}
@@ -40,7 +40,7 @@
   width: 100%;
   height: 100%;
 }
-.divinationCard {
+.divinationCard { 
   max-width: 268px;
   height: 401px;
   background: transparent;
@@ -110,8 +110,8 @@ import SelectedCard from '../views/Divination-Cards.vue'
 
 export default {
   props: ['sltcd'],
-  data() {
-    return {
+  data() { 
+    return { //проверка коммита
       cards: [{
         name: "Assassin's Favour",
         reward: "Dagger",

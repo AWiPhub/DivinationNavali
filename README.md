@@ -1,4 +1,4 @@
-# nonameproj
+# DivinationNavali
 
 ## Project setup
 ```

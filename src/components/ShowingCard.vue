@@ -28,6 +28,7 @@
   </div>
 </template>
 
+
 <style>
 .backCard{
   height: 300px;
@@ -40,6 +41,7 @@
   width: 100%;
   height: 100%;
 }
+
 .divinationCard { 
   max-width: 268px;
   height: 401px;
@@ -48,6 +50,7 @@
   margin-top: 10px;
   margin-left: 23%;
 }
+
 .cardFace {
   z-index: -1;
   position: absolute;
@@ -56,6 +59,7 @@
   margin-top: 30px;
   margin-left: 16px;
 }
+
 .itemHeader{
   width: 74%;
   color: #111111;
@@ -65,6 +69,7 @@
   margin-top: -7px;
   margin-left: -55px;
 }
+
 .itemStack{
   /* background-color: #fff; */
   width: 15%;
@@ -74,6 +79,7 @@
   margin-top: 34%;
   margin-left: 1.5%;
 }
+
 .itemReward{
   /* background-color: #fff; */
   width: 45%;
@@ -85,6 +91,7 @@
   margin-top: 39%;
   margin-left: 19px;
 }
+
 .itemDescription{
   /* background-color: #fff; */
   width: 45%;
@@ -98,12 +105,14 @@
   font-variant: small-caps;
   line-height: 0.9;
 }
+
 .itemReward, .itemDescription{
   display: flex;
   justify-content: center; /*Центрирование по горизонтали*/
   align-items: center; 
 }
 </style>
+
 
 <script>
 import SelectedCard from '../views/Divination-Cards.vue'
@@ -117,20 +126,20 @@ export default {
         reward: "Dagger",
         stack: '9',
         description: "By the time their eyes meet,\
-                      the dark deal has long since been made,\
-                      and his fate long since sealed."
+                            the dark deal has long since been made,\
+                            and his fate long since sealed."
       },
       {
         name: "Assassin's Favour",
         reward: "Seraphim's Armour",
         stack: '4',
         description: "Chaos spread, wreaking havoc and death.\
-                      They said none would be spared, and yet here I stand."
+                          They said none would be spared, and yet here I stand."
       }
       ]
     }
   },
-  computed: { //11111111111111111111111111111
+  computed: { 
     allList: function() {
       return this.cards.filter(function (card){
         return card === {sltcd}

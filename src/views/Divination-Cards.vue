@@ -11,6 +11,7 @@
             v-model="name"
             placeholder="Enter your Divination Card..."
             v-on:click="visible = true"
+            onclick="this.select();"
           >
           <div v-show="visible">
             <button
@@ -23,7 +24,7 @@
         </div>
       </div>
     </div>
-    <showing-card :sltcd="search"></showing-card>
+    <showing-card :sltcd="name"></showing-card>
   </div>
 </template>
 
@@ -110,7 +111,6 @@ export default {
     }
   }
 }
-
 
 const card = (name) => ({name})
 

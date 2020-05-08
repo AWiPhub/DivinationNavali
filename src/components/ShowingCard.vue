@@ -8,31 +8,15 @@
       </div>
       <div class="itemBoxContent">
         <div class="itemHeader">
-          <!-- <p v-for="card in cards" :key="card.name">
-            {{card.name}}
-          </p> -->
-
-          <p> {{ cards[0].name }} </p>
+          <p> {{ sltcd }} </p>
         </div>
         <div class="itemStack">
-          <!-- <p v-for="card in cards" :key="card.name">
-            {{card.stack}}
-          </p> -->
-
           <p> {{ cards[0].stack }} </p>
         </div>
         <div class="itemReward">
-          <!-- <p v-for="card in cards" :key="card.name">
-            {{card.reward}}
-          </p> -->
-
           <p> {{ cards[0].reward }} </p>
         </div> 
         <div class="itemDescription">
-          <!-- <p v-for="card in cards" :key="card.name">
-            {{card.description}}
-          </p> -->
-
           <p> {{ cards[0].description }} </p>
         </div>
         {{card}}

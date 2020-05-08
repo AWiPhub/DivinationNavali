@@ -15,10 +15,10 @@
       >
       <div v-show="visible" class="visible">
         <button
-          v-for="(card, index) in filteredList"
+          v-for="(card, index) in filteredList" :key="card.index"
           v-on:click="SubmitChoice(card.name, index)"
         >
-          {{ card.name }}
+          {{ card.name }} - {{ index }}
         </button>
       </div>
     </div>
@@ -106,10 +106,45 @@ export default {
       name: '',
       index: '',
       users: [
+        { name: "A Dab of Ink"},
+        { name: "A Mother's Parting Gift"},
+        { name: "Abandoned Wealth"},
+        { name: "Akil's Prophecy"},
+        { name: "Alluring Bounty"},
+        { name: "Alone in the Darkness"},
+        { name: "Anarchy's Price"},
+        { name: "Arrogance of the Vaal"},
         { name: "Assassin's Favour"},
-        { name: "The Inoculated"},
-        { name: "The Lunaris Priestess"},
-        { name: "The Watcher"},
+        { name: "Atziri's Arsenal"},
+        { name: "Audacity"},
+        { name: "Azyran's Reward"},
+        { name: "Baited Expectations"},
+        { name: "Beauty Through Death"},
+        { name: "Blessing of God"},
+        { name: "Blind Venture"},
+        { name: "Boon of Justice"},
+        { name: "Boon of the First Ones"},
+        { name: "Boundless Realms"},
+        { name: "Bowyer's Dream"},
+        { name: "Buried Treasure"},
+        { name: "Burning Blood"},
+        { name: "Call to the First Ones"},
+        { name: "Cameria's Cut"},
+        { name: "Cartographer's Delight"},
+        { name: "Chaotic Disposition"},
+        { name: "Council of Cats"},
+        { name: "Coveted Possession"},
+        { name: "Dark Dreams"},
+        { name: "Dark Temptation"},
+        { name: "Death"},
+        { name: "Deathly Designs"},
+        { name: "Demigod's Wager"},
+        { name: "Dialla's Subjugation"},
+        { name: "Divine Justice"},
+        { name: "Doedre's Madness"},
+        { name: "Earth Drinker"},
+        { name: "Echoes of Love"},
+        { name: "Emperor of Purity"},
       ]
     }
   },
@@ -134,9 +169,45 @@ export default {
 const card = (name) => ({name})
 
 const cards = [
+  card("A Dab of Ink"),
+  card("A Mother's Parting Gift"),
+  card("Abandoned Wealth"),
+  card("Akil's Prophecy"),
+  card("Alluring Bounty"),
+  card("Alone in the Darkness"),
+  card("Anarchy's Price"),
+  card("Arrogance of the Vaal"),
   card("Assassin's Favour"),
-  card("The Inoculated"),
-  card("The Lunaris Priestess"),
-  card("The Watcher"),
+  card("Atziri's Arsenal"),
+  card("Audacity"),
+  card("Azyran's Reward"),
+  card("Baited Expectations"),
+  card("Beauty Through Death"),
+  card("Blessing of God"),
+  card("Blind Venture"),
+  card("Boon of Justice"),
+  card("Boon of the First Ones"),
+  card("Boundless Realms"),
+  card("Bowyer's Dream"),
+  card("Buried Treasure"),
+  card("Burning Blood"),
+  card("Call to the First Ones"),
+  card("Cameria's Cut"),
+  card("Cartographer's Delight"),
+  card("Chaotic Disposition"),
+  card("Council of Cats"),
+  card("Coveted Possession"),
+  card("Dark Dreams"),
+  card("Dark Temptation"),
+  card("Death"),
+  card("Deathly Designs"),
+  card("Demigod's Wager"),
+  card("Dialla's Subjugation"),
+  card("Divine Justice"),
+  card("Doedre's Madness"),
+  card("Earth Drinker"),
+  card("Echoes of Love"),
+  card("Emperor of Purity"),
+  
 ]
 </script>

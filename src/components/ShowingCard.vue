@@ -150,7 +150,23 @@ const cards = [
         "Seraphim's Armour",
         "4",
         "Chaos spread, wreaking havoc and death.\
-          They said none would be spared, and yet here I stand.")
+          They said none would be spared, and yet here I stand."),
+  card("The Lunaris Priestess",
+        "../images/divination-cards/The Lunaris Priestess.png",
+        "Sire of Shards",
+        "5",
+        "Embrace the Light,\
+          Await the Morrow,\
+          No more Spite,\
+          And no more Sorrow."),
+  card("The Watcher",
+        "../images/divination-cards/The Watcher.png",
+        "Crown of Eyes",
+        "12",
+        "Strange eyes on top of spines\
+          Gaze beyond the veil of time\
+          Deep down below the mines\
+          A dream of crimson and of grime"),
 ]
 
 

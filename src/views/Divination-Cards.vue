@@ -107,7 +107,9 @@ export default {
       index: '',
       users: [
         { name: "Assassin's Favour"},
-        { name: "The Inoculated"}
+        { name: "The Inoculated"},
+        { name: "The Lunaris Priestess"},
+        { name: "The Watcher"},
       ]
     }
   },
@@ -133,6 +135,8 @@ const card = (name) => ({name})
 
 const cards = [
   card("Assassin's Favour"),
-  card("The Inoculated")
+  card("The Inoculated"),
+  card("The Lunaris Priestess"),
+  card("The Watcher"),
 ]
 </script>

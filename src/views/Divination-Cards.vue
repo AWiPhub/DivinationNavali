@@ -8,32 +8,30 @@
 
     <div class="inputArea">
       <input
-        v-model="name"
+        v-model="search"
         placeholder="Select Divination Card"
         v-on:click="visible = true"
         onclick="this.select();"
       >
       <div v-show="visible" class="visible">
         <button
-          v-for="(card, index) in filteredList" :key="card.index"
-          v-on:click="SubmitChoice(card.name, index)"
+          v-for="card in filteredList " :key="card.index"
+          v-on:click="selectCard(card.name, card.id)"
         >
-          {{ card.name }} - {{ index }}
+          {{ card.name }} - {{ card.id }}
         </button>
       </div>
     </div>
 
-    <showing-card v-bind:ind="index"></showing-card>
+    <showing-card v-bind:ind="id"></showing-card>
   </div>
 </template>
 
 <style scoped>
 @font-face {
   font-family: "PoEFont";
-
   src: url("../fonts/Fontin-Regular.otf") format("truetype");
 }
-
 .blockText {
   margin: 13px 0px 0px;
   border: 1px solid;
@@ -43,24 +41,20 @@
   position: relative;
   width: 500px;
 }
-
 h2{
   color: #DFCF99;
   font-size: 16.9px;
 }
-
 .content p{
   color: #A38D6D;
   font-size: 15px;
 }
-
 .inputArea{
   /* background-color: #fff; */
   width: 514px;
   margin-top: 5px;
   height: 35px;
 }
-
 .inputArea input, input::placeholder{
   width: 510px;
   height: 30px;
@@ -70,14 +64,12 @@ h2{
   font-size: 16px;
   text-align: center;
 }
-
 .visible{
   display: grid;
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-
 .visible button{
   width: 510px;
   height: 25px;
@@ -87,12 +79,10 @@ h2{
   cursor: pointer;
   z-index: 3;
 }
-
 </style>
 
 <script>
 import ShowingCard from '../components/ShowingCard.vue'
-
 export default {
   props: {
     SelectedCard: String
@@ -104,110 +94,109 @@ export default {
     return{
       visible: false,
       name: '',
-      index: '',
+      search: '',
+      id: 0,
       users: [
-        { name: "A Dab of Ink"},
-        { name: "A Mother's Parting Gift"},
-        { name: "Abandoned Wealth"},
-        { name: "Akil's Prophecy"},
-        { name: "Alluring Bounty"},
-        { name: "Alone in the Darkness"},
-        { name: "Anarchy's Price"},
-        { name: "Arrogance of the Vaal"},
-        { name: "Assassin's Favour"},
-        { name: "Atziri's Arsenal"},
-        { name: "Audacity"},
-        { name: "Azyran's Reward"},
-        { name: "Baited Expectations"},
-        { name: "Beauty Through Death"},
-        { name: "Blessing of God"},
-        { name: "Blind Venture"},
-        { name: "Boon of Justice"},
-        { name: "Boon of the First Ones"},
-        { name: "Boundless Realms"},
-        { name: "Bowyer's Dream"},
-        { name: "Buried Treasure"},
-        { name: "Burning Blood"},
-        { name: "Call to the First Ones"},
-        { name: "Cameria's Cut"},
-        { name: "Cartographer's Delight"},
-        { name: "Chaotic Disposition"},
-        { name: "Council of Cats"},
-        { name: "Coveted Possession"},
-        { name: "Dark Dreams"},
-        { name: "Dark Temptation"},
-        { name: "Death"},
-        { name: "Deathly Designs"},
-        { name: "Demigod's Wager"},
-        { name: "Dialla's Subjugation"},
-        { name: "Divine Justice"},
-        { name: "Doedre's Madness"},
-        { name: "Earth Drinker"},
-        { name: "Echoes of Love"},
-        { name: "Emperor of Purity"},
+        { name: "A Dab of Ink", id: 0},
+        { name: "A Mother's Parting Gift", id: 1},
+        { name: "Abandoned Wealth", id: 2},
+        { name: "Akil's Prophecy", id: 3},
+        { name: "Alluring Bounty", id: 4},
+        { name: "Alone in the Darkness", id: 5},
+        { name: "Anarchy's Price", id: 6},
+        { name: "Arrogance of the Vaal", id: 7},
+        { name: "Assassin's Favour", id: 8},
+        { name: "Atziri's Arsenal", id: 9},
+        { name: "Audacity", id: 10},
+        { name: "Azyran's Reward", id: 11},
+        { name: "Baited Expectations", id: 12},
+        { name: "Beauty Through Death", id: 13},
+        { name: "Blessing of God", id: 14},
+        { name: "Blind Venture", id: 15},
+        { name: "Boon of Justice", id: 16},
+        { name: "Boon of the First Ones", id: 17},
+        { name: "Boundless Realms", id: 18},
+        { name: "Bowyer's Dream", id: 19},
+        { name: "Buried Treasure", id: 20},
+        { name: "Burning Blood", id: 21},
+        { name: "Call to the First Ones", id: 22},
+        { name: "Cameria's Cut", id: 23},
+        { name: "Cartographer's Delight", id: 24},
+        { name: "Chaotic Disposition", id: 25},
+        { name: "Council of Cats", id: 26},
+        { name: "Coveted Possession", id: 27},
+        { name: "Dark Dreams", id: 28},
+        { name: "Dark Temptation", id: 29},
+        { name: "Death", id: 30},
+        { name: "Deathly Designs", id: 31},
+        { name: "Demigod's Wager", id: 32},
+        { name: "Dialla's Subjugation", id: 33},
+        { name: "Divine Justice", id: 34},
+        { name: "Doedre's Madness", id: 35},
+        { name: "Earth Drinker", id: 36},
+        { name: "Echoes of Love", id: 37},
+        { name: "Emperor of Purity", id: 38},
       ]
+    }
+  },
+  methods: {
+    selectCard: function (message, index) {
+      this.search = message;
+      this.visible = false;
+      this.id = index;
     }
   },
   computed:{
     filteredList: function(){
-      var comp = this.name;
+      var comp = this.search;
       return this.users.filter(function (elem) {
         if(comp==='') return true;
         else return elem.name.indexOf(comp) > -1;
       })
     }
-  },
-  methods: {
-    SubmitChoice: function (message, index) {
-      this.name = message;
-      this.visible = false;
-      this.index = index;
-    }
   }
 }
-
-const card = (name) => ({name})
-
+const card = (name, id) => ({name, id})
 const cards = [
-  card("A Dab of Ink"),
-  card("A Mother's Parting Gift"),
-  card("Abandoned Wealth"),
-  card("Akil's Prophecy"),
-  card("Alluring Bounty"),
-  card("Alone in the Darkness"),
-  card("Anarchy's Price"),
-  card("Arrogance of the Vaal"),
-  card("Assassin's Favour"),
-  card("Atziri's Arsenal"),
-  card("Audacity"),
-  card("Azyran's Reward"),
-  card("Baited Expectations"),
-  card("Beauty Through Death"),
-  card("Blessing of God"),
-  card("Blind Venture"),
-  card("Boon of Justice"),
-  card("Boon of the First Ones"),
-  card("Boundless Realms"),
-  card("Bowyer's Dream"),
-  card("Buried Treasure"),
-  card("Burning Blood"),
-  card("Call to the First Ones"),
-  card("Cameria's Cut"),
-  card("Cartographer's Delight"),
-  card("Chaotic Disposition"),
-  card("Council of Cats"),
-  card("Coveted Possession"),
-  card("Dark Dreams"),
-  card("Dark Temptation"),
-  card("Death"),
-  card("Deathly Designs"),
-  card("Demigod's Wager"),
-  card("Dialla's Subjugation"),
-  card("Divine Justice"),
-  card("Doedre's Madness"),
-  card("Earth Drinker"),
-  card("Echoes of Love"),
-  card("Emperor of Purity"),
+  card("A Dab of Ink", 0),
+  card("A Mother's Parting Gift", 1),
+  card("Abandoned Wealth", 2),
+  card("Akil's Prophecy", 3),
+  card("Alluring Bounty", 4),
+  card("Alone in the Darkness", 5),
+  card("Anarchy's Price", 6),
+  card("Arrogance of the Vaal", 7),
+  card("Assassin's Favour", 8),
+  card("Atziri's Arsenal", 9),
+  card("Audacity", 10),
+  card("Azyran's Reward", 11),
+  card("Baited Expectations", 12),
+  card("Beauty Through Death", 13),
+  card("Blessing of God", 14),
+  card("Blind Venture", 15),
+  card("Boon of Justice", 16),
+  card("Boon of the First Ones", 17),
+  card("Boundless Realms", 18),
+  card("Bowyer's Dream", 19),
+  card("Buried Treasure", 20),
+  card("Burning Blood", 21),
+  card("Call to the First Ones", 22),
+  card("Cameria's Cut", 23),
+  card("Cartographer's Delight", 24),
+  card("Chaotic Disposition", 25),
+  card("Council of Cats", 26),
+  card("Coveted Possession", 27),
+  card("Dark Dreams", 28),
+  card("Dark Temptation", 29),
+  card("Death", 30),
+  card("Deathly Designs", 31),
+  card("Demigod's Wager", 32),
+  card("Dialla's Subjugation", 33),
+  card("Divine Justice", 34),
+  card("Doedre's Madness", 35),
+  card("Earth Drinker", 36),
+  card("Echoes of Love", 37),
+  card("Emperor of Purity", 38),
   
 ]
 </script>

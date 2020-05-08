@@ -4,31 +4,36 @@
       <h2 class="Title">
         <p>This is an Divination Cards page</p>
       </h2>
-      <div class="content">
-        <p>Select Divination Card</p>
-        <div class="inputArea">
-          <input
-            v-model="name"
-            placeholder="Enter your Divination Card..."
-            v-on:click="visible = true"
-            onclick="this.select();"
-          >
-          <div v-show="visible">
-            <button
-              v-for="card in filteredList"
-              v-on:click="SubmitChoice(card.name)"
-            >
-              {{ card.name }}
-            </button>
-          </div>
-        </div>
+    </div>
+
+    <div class="inputArea">
+      <input
+        v-model="name"
+        placeholder="Select Divination Card"
+        v-on:click="visible = true"
+        onclick="this.select();"
+      >
+      <div v-show="visible" class="visible">
+        <button
+          v-for="(card, index) in filteredList"
+          v-on:click="SubmitChoice(card.name, index)"
+        >
+          {{ card.name }}
+        </button>
       </div>
     </div>
-    <showing-card :sltcd="name"></showing-card>
+
+    <showing-card v-bind:ind="index"></showing-card>
   </div>
 </template>
 
 <style scoped>
+@font-face {
+  font-family: "PoEFont";
+
+  src: url("../fonts/Fontin-Regular.otf") format("truetype");
+}
+
 .blockText {
   margin: 13px 0px 0px;
   border: 1px solid;
@@ -50,48 +55,59 @@ h2{
 }
 
 .inputArea{
-  width: 200px;
+  /* background-color: #fff; */
+  width: 514px;
+  margin-top: 5px;
+  height: 35px;
 }
 
-input{
-  width: 200px;
+.inputArea input, input::placeholder{
+  width: 510px;
+  height: 30px;
+  background-color: #0c0b0b;
+  color: #DFCF99;
+  font-family: "PoEFont";
+  font-size: 16px;
+  text-align: center;
 }
 
-button{
-  width: 200px;
+.visible{
+  display: grid;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-ul{
-  padding: 0 0 0 0;
-}
-
-li{
-  border: solid 1px rgba(255, 255, 255, 0.2);
-}
-
-li:hover{
+.visible button{
+  width: 510px;
+  height: 25px;
+  background-color: #0c0b0b;
+  color: #DFCF99;
+  font-family: "PoEFont";
   cursor: pointer;
+  z-index: 3;
 }
+
 </style>
 
 <script>
-import ShowingCard from '../components/ShowingCard.vue' // ПОДКЛЮЧЕНИЕ КОМПОНЕНТА 1
+import ShowingCard from '../components/ShowingCard.vue'
 
 export default {
   props: {
     SelectedCard: String
   },
-  components:{ // ПОДКЛЮЧЕНИЕ КОМПОНЕНТА 2
+  components:{
     ShowingCard
   },
   data() {
     return{
-      cards: cards,
       visible: false,
       name: '',
+      index: '',
       users: [
-        { name: "Assassin's Favour" },
-        { name: "The Inoculated" },
+        { name: "Assassin's Favour"},
+        { name: "The Inoculated"}
       ]
     }
   },
@@ -105,9 +121,10 @@ export default {
     }
   },
   methods: {
-    SubmitChoice: function (message) {
+    SubmitChoice: function (message, index) {
       this.name = message;
       this.visible = false;
+      this.index = index;
     }
   }
 }

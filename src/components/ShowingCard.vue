@@ -1,25 +1,30 @@
 <template>
   <div class="ShowingCard">
+    <button
+      v-on:click="check(ind)"
+      class="GoSearch"
+    >
+      Search
+    </button>
     <div class="divinationCard">
       <div class="cardFace">
         <img
-          :src="cards[0].pathImg"
-          :alt="cards[0].name">
+          :src="require(`../images/divination-cards/${card.name}.png`)"
+          :alt="card.name">
       </div>
       <div class="itemBoxContent">
         <div class="itemHeader">
-          <p> {{ sltcd }} </p>
+          <p> {{ card.name }} </p>
         </div>
         <div class="itemStack">
-          <p> {{ cards[0].stack }} </p>
+          <p> {{ card.stack }} </p>
         </div>
         <div class="itemReward">
-          <p> {{ cards[0].reward }} </p>
+          <p> {{ card.reward }} </p>
         </div> 
         <div class="itemDescription">
-          <p> {{ cards[0].description }} </p>
+          <p> {{ card.description }} </p>
         </div>
-        {{card}}
       </div>
     </div>    
   </div>
@@ -27,12 +32,28 @@
 
 
 <style>
+.GoSearch{
+  background-color: #fff;
+  position: absolute;
+  margin-left: 194px;
+  margin-top: -43px;
+  height: 32px;
+  background-color: #0c0b0b;
+  font-family: "PoEFont";
+  font-size: 16px;
+  text-align: center;
+  color: #DFCF99;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  cursor: pointer;
+}
+
 .backCard{
   height: 300px;
 }
 
 .itemBoxContent{
-  z-index: 3;
   background:  url("../images/divination-cards/divination-card-base.png") no-repeat center;
   background-size: cover;
   width: 100%;
@@ -40,6 +61,7 @@
 }
 
 .divinationCard { 
+  padding-top: 20px;
   max-width: 268px;
   height: 401px;
   background: transparent;
@@ -65,6 +87,7 @@
   position: absolute;
   margin-top: -7px;
   margin-left: -55px;
+  z-index: 2;
 }
 
 .itemStack{
@@ -116,7 +139,7 @@ const card = (name, pathImg, reward, stack, description) => ({name, pathImg, rew
 
 const cards = [
   card("Assassin's Favour",
-        "../images/divination-cards/Assassins Favor.png",
+        "../images/divination-cards/Assassin's Favour.png",
         "Dagger",
         "9",
         "By the time their eyes meet,\
@@ -134,35 +157,17 @@ const cards = [
 import SelectedCard from '../views/Divination-Cards.vue'
 
 export default {
-  props: ['sltcd'],
+  props: ['ind'],
   data() {
     return{
-      cards: cards
+      cards: cards,
+      card: cards[0]
+    }
+  },
+  methods: {
+    check: function(ind) {
+      this.card = cards[ind]
     }
   }
-
-
-  // data() { 
-  //   return { 
-  //     cards: [
-  //     {
-  //       name: "Assassin's Favour",
-  //       pathImg: '../images/divination-cards/Assassins Favor.png',
-  //       reward: "Dagger",
-  //       stack: '9',
-  //       description: "By the time their eyes meet,\
-  //                           the dark deal has long since been made,\
-  //                           and his fate long since sealed."
-  //     },
-  //     {
-  //       name: "The Inoculated",
-  //       pathImg: '../images/divination-cards/The Inoculated.png',
-  //       reward: "Seraphim's Armour",
-  //       stack: '4',
-  //       description: "Chaos spread, wreaking havoc and death.\
-  //                         They said none would be spared, and yet here I stand."
-  //     }]
-  //   }
-  // }
 }
 </script>

@@ -15,10 +15,10 @@
       >
       <div v-show="visible" class="visible">
         <button
-          v-for="card in filteredList " :key="card.index"
+          v-for="card in filteredList " :key="card.id"
           v-on:click="selectCard(card.name, card.id)"
         >
-          {{ card.name }} - {{ card.id }}
+          {{ card.name }}
         </button>
       </div>
     </div>
@@ -50,34 +50,47 @@ h2{
   font-size: 15px;
 }
 .inputArea{
-  /* background-color: #fff; */
+  background-color: #1e2124;
   width: 514px;
-  margin-top: 5px;
+  margin-top: 1px;
   height: 35px;
 }
 .inputArea input, input::placeholder{
   width: 510px;
   height: 30px;
-  background-color: #0c0b0b;
+  background-color: #1e2124;
   color: #DFCF99;
   font-family: "PoEFont";
   font-size: 16px;
   text-align: center;
 }
 .visible{
-  display: grid;
-  overflow-y: scroll;
+  display: block;
+  overflow:auto;
+  scrollbar-width: 200px;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  height: 300px;
+  z-index: 3;
+  position: relative;
 }
 .visible button{
-  width: 510px;
+  width: 514px;
   height: 25px;
-  background-color: #0c0b0b;
+  background-color: #1e2124;
   color: #DFCF99;
   font-family: "PoEFont";
   cursor: pointer;
-  z-index: 3;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  border-left-color: #DFCF99;
+  z-index: 4;
+  margin-top: -1px;
+}
+.visible button:hover{
+  background-color: #a8a8a8;
+  color: #141414;
 }
 </style>
 
@@ -148,10 +161,10 @@ export default {
   },
   computed:{
     filteredList: function(){
-      var comp = this.search;
+      var comp = this.search.toLowerCase();
       return this.users.filter(function (elem) {
         if(comp==='') return true;
-        else return elem.name.indexOf(comp) > -1;
+        else return elem.name.toLowerCase().indexOf(comp) > -1;
       })
     }
   }

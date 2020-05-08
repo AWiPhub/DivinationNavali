@@ -8,9 +8,9 @@
     </button>
     <div class="divinationCard">
       <div class="cardFace">
-        <!-- <img
+        <img
           :src="require(`../images/divination-cards/${card.name}.png`)"
-          :alt="card.name"> -->
+          :alt="card.name">
       </div>
       <div class="itemBoxContent">
         <div class="itemHeader">
@@ -25,9 +25,9 @@
         <div class="itemDescription">
           <p> {{ card.description }} </p>
         </div>
-        <div class="itemDropAreas">
+        <!-- <div class="itemDropAreas">
           <p> {{ card.dropAreas }} </p>
-        </div>
+        </div> -->
       </div>
     </div>    
   </div>
@@ -61,6 +61,7 @@
   background-size: cover;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .divinationCard { 
@@ -101,6 +102,7 @@
   color: #c8c8c8;
   margin-top: 34%;
   margin-left: 1.5%;
+  z-index: 2;
 }
 
 .itemReward{
@@ -113,6 +115,7 @@
   color: #af6025;
   margin-top: 39%;
   margin-left: 19px;
+  z-index: 2;
 }
 
 .itemDescription{
@@ -127,6 +130,7 @@
   font-size: 17px;
   font-variant: small-caps;
   line-height: 0.9;
+  z-index: 2;
 }
 
 .itemReward, .itemDescription{

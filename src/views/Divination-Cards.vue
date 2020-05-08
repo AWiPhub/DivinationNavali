@@ -6,29 +6,21 @@
       </h2>
       <div class="content">
         <p>Select Divination Card</p>
-      
         <div class="inputArea">
           <input
             v-model="name"
             placeholder="Enter your Divination Card..."
-            v-on:click="visible =! visible"
+            v-on:click="visible = true"
           >
           <div v-show="visible">
-            <ul>
-              <li
-                type="none"
-                v-for="card in filteredList"
-                v-on:change="selectCard"
-                v-on:click="visible =! visible"
-              >
-                {{ card.name }}
-              </li>
-            </ul>
-            
+            <button
+              v-for="card in filteredList"
+              v-on:click="SubmitChoice(card.name)"
+            >
+              {{ card.name }}
+            </button>
           </div>
         </div>
-
-
       </div>
     </div>
     <showing-card :sltcd="search"></showing-card>
@@ -68,6 +60,14 @@ button{
   width: 200px;
 }
 
+ul{
+  padding: 0 0 0 0;
+}
+
+li{
+  border: solid 1px rgba(255, 255, 255, 0.2);
+}
+
 li:hover{
   cursor: pointer;
 }
@@ -94,10 +94,6 @@ export default {
       ]
     }
   },
-  methods: {
-    selectCard: function() {
-    }
-  },
   computed:{
     filteredList: function(){
       var comp = this.name;
@@ -106,9 +102,14 @@ export default {
         else return elem.name.indexOf(comp) > -1;
       })
     }
+  },
+  methods: {
+    SubmitChoice: function (message) {
+      this.name = message;
+      this.visible = false;
+    }
   }
 }
-
 
 
 const card = (name) => ({name})
@@ -117,6 +118,4 @@ const cards = [
   card("Assassin's Favour"),
   card("The Inoculated")
 ]
-
-
 </script>
